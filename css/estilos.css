@@ -120,8 +120,18 @@ h3 { font-size: 1.5rem; margin: .8rem 0 .2rem; }
 .producto p { color: var(--gris); font-size: .88rem; }
 .producto__precio { display: inline-block; margin-top: .4rem; font-size: .8rem; color: var(--salvia); font-weight: 500; }
 
-.sobre-mi { text-align: center; max-width: 760px; margin: 0 auto; }
-.sobre-mi p:not(.etiqueta) { color: var(--gris); font-size: 1.05rem; }
+.quienes { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.quienes__foto img { border-radius: 12px 12px 200px 200px; aspect-ratio: 4/5; object-fit: cover; width: 100%; }
+.quienes__texto > p:not(.etiqueta) { color: var(--gris); margin-bottom: 1rem; }
+.quienes__texto strong { color: var(--tinta); font-weight: 500; }
+.quienes__frase {
+  font: italic 500 clamp(1.6rem, 3.2vw, 2.1rem)/1.25 var(--letra-titulos);
+  color: var(--terracota);
+  margin-top: 2rem; padding-left: 1.2rem;
+  border-left: 2px solid var(--salvia);
+  text-wrap: balance;
+}
+.bodas__foto { order: 2; }
 
 .contacto { background: var(--lino); text-align: center; }
 .contacto .seccion__intro { margin-inline: auto; }
@@ -159,7 +169,9 @@ h3 { font-size: 1.5rem; margin: .8rem 0 .2rem; }
   }
   .menu.abierto { display: flex; }
 
-  .portada, .bodas { grid-template-columns: 1fr; }
+  .portada, .bodas, .quienes { grid-template-columns: 1fr; }
+  .quienes__foto { max-width: 420px; margin: 0 auto; }
+  .bodas__foto { order: 0; }
   .portada__foto { order: -1; max-width: 420px; margin: 0 auto; }
   .ventajas { grid-template-columns: repeat(2, 1fr); }
   .productos { grid-template-columns: repeat(2, 1fr); gap: 1rem; }

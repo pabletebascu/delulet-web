@@ -1,0 +1,167 @@
+/* ===== Colores y letras de la marca (sacados de su Instagram) ===== */
+:root {
+  --crema: #fbf7ee;
+  --lino: #efe7da;
+  --terracota: #b5654a;
+  --salvia: #8a9a7b;
+  --tinta: #2b2622;
+  --gris: #6f655c;
+  --letra-titulos: "Cormorant Garamond", Georgia, serif;
+  --letra-texto: "Poppins", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  background: var(--crema);
+  color: var(--tinta);
+  font-family: var(--letra-texto);
+  font-weight: 300;
+  line-height: 1.7;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+h1, h2, h3 {
+  font-family: var(--letra-titulos);
+  font-weight: 600;
+  color: var(--terracota);
+  line-height: 1.1;
+}
+h1 { font-size: clamp(2.6rem, 6vw, 4.2rem); margin-bottom: 1rem; }
+h2 { font-size: clamp(2.1rem, 4.5vw, 3rem); margin-bottom: 1rem; }
+h3 { font-size: 1.5rem; margin: .8rem 0 .2rem; }
+
+.etiqueta {
+  color: var(--salvia);
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: .75rem;
+  font-weight: 500;
+  margin-bottom: .6rem;
+}
+
+/* ===== Botones ===== */
+.boton {
+  display: inline-block;
+  background: var(--terracota);
+  color: #fff;
+  border: 1px solid var(--terracota);
+  padding: .8rem 1.6rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font: 400 .95rem var(--letra-texto);
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.boton:hover { background: transparent; color: var(--terracota); }
+.boton--borde { background: transparent; color: var(--terracota); }
+.boton--borde:hover { background: var(--terracota); color: #fff; }
+.boton--pequeno { padding: .5rem 1.1rem; font-size: .85rem; }
+
+/* ===== Cabecera ===== */
+.cabecera {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .8rem clamp(1rem, 5vw, 4rem);
+  background: rgba(251, 247, 238, .92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--lino);
+}
+.cabecera__logo img { height: 46px; width: auto; }
+.menu { display: flex; align-items: center; gap: 2rem; }
+.menu a:not(.boton) { text-decoration: none; font-size: .92rem; }
+.menu a:not(.boton):hover { color: var(--terracota); }
+.menu-boton { display: none; }
+
+/* ===== Secciones ===== */
+.seccion { padding: clamp(3.5rem, 8vw, 6rem) clamp(1rem, 5vw, 4rem); }
+.seccion__intro { color: var(--gris); max-width: 560px; margin-bottom: 2.5rem; }
+
+.portada {
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1rem, 5vw, 4rem);
+}
+.portada__texto > p:not(.etiqueta) { color: var(--gris); max-width: 480px; margin-bottom: 2rem; }
+.portada__botones { display: flex; gap: .8rem; flex-wrap: wrap; }
+.portada__foto img { border-radius: 200px 200px 12px 12px; aspect-ratio: 4/5; object-fit: cover; width: 100%; }
+
+.ventajas {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  background: var(--lino);
+  padding: 2rem clamp(1rem, 5vw, 4rem);
+  text-align: center; gap: 1rem;
+}
+.ventajas span { color: var(--terracota); font-size: 1.4rem; }
+.ventajas p { font-size: .85rem; color: var(--gris); }
+
+.bodas { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.bodas__foto img { border-radius: 12px; aspect-ratio: 4/5; object-fit: cover; width: 100%; }
+.bodas__texto > p:not(.etiqueta) { color: var(--gris); margin-bottom: 1.5rem; }
+.pasos { list-style: none; padding: 0; margin-bottom: 2rem; counter-reset: paso; }
+.pasos li {
+  counter-increment: paso;
+  position: relative; padding-left: 3rem; margin-bottom: 1rem; color: var(--gris);
+}
+.pasos li::before {
+  content: counter(paso);
+  position: absolute; left: 0; top: 0;
+  width: 2rem; height: 2rem; border-radius: 50%;
+  border: 1px solid var(--salvia); color: var(--salvia);
+  display: grid; place-items: center; font-size: .85rem;
+}
+.pasos strong { display: block; color: var(--tinta); font-weight: 500; }
+
+.catalogo { background: #fff; text-align: center; }
+.catalogo .seccion__intro { margin-inline: auto; }
+.productos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: left; }
+.producto img { border-radius: 10px; aspect-ratio: 3/4; object-fit: cover; width: 100%; }
+.producto p { color: var(--gris); font-size: .88rem; }
+.producto__precio { display: inline-block; margin-top: .4rem; font-size: .8rem; color: var(--salvia); font-weight: 500; }
+
+.sobre-mi { text-align: center; max-width: 760px; margin: 0 auto; }
+.sobre-mi p:not(.etiqueta) { color: var(--gris); font-size: 1.05rem; }
+
+.contacto { background: var(--lino); text-align: center; }
+.contacto .seccion__intro { margin-inline: auto; }
+.formulario {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  max-width: 680px; margin: 0 auto; text-align: left;
+}
+.formulario label { display: flex; flex-direction: column; font-size: .85rem; gap: .3rem; }
+.formulario input, .formulario select, .formulario textarea {
+  font: 300 1rem var(--letra-texto);
+  padding: .7rem .9rem;
+  border: 1px solid #d9cfc1; border-radius: 8px; background: var(--crema);
+}
+.formulario__ancho { grid-column: 1 / -1; }
+.formulario__aviso { grid-column: 1 / -1; text-align: center; color: var(--terracota); }
+.contacto__redes { margin-top: 2rem; color: var(--gris); }
+.contacto__redes a { color: var(--terracota); }
+
+.pie { text-align: center; padding: 3rem 1rem; color: var(--gris); font-size: .9rem; }
+.pie__logo { height: 56px; width: auto; margin: 0 auto 1rem; }
+.pie__legal { font-size: .75rem; margin-top: .5rem; }
+
+/* ===== Móvil ===== */
+@media (max-width: 860px) {
+  .menu-boton {
+    display: flex; flex-direction: column; gap: 5px;
+    background: none; border: 0; padding: .5rem; cursor: pointer;
+  }
+  .menu-boton span { width: 24px; height: 1.5px; background: var(--tinta); }
+  .menu {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; gap: 1.2rem; padding: 1.5rem;
+    background: var(--crema); border-bottom: 1px solid var(--lino);
+    display: none;
+  }
+  .menu.abierto { display: flex; }
+
+  .portada, .bodas { grid-template-columns: 1fr; }
+  .portada__foto { order: -1; max-width: 420px; margin: 0 auto; }
+  .ventajas { grid-template-columns: repeat(2, 1fr); }
+  .productos { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .formulario { grid-template-columns: 1fr; }
+}

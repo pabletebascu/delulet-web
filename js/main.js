@@ -29,7 +29,7 @@ formulario.addEventListener("submit", async (e) => {
   datos._template = "table";
 
   try {
-    const respuesta = await fetch("https://formsubmit.co/ajax/lulet.world@gmail.com", {
+    const respuesta = await fetch("https://formsubmit.co/ajax/luletsworld@gmail.com", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(datos),
@@ -39,7 +39,7 @@ formulario.addEventListener("submit", async (e) => {
     aviso.textContent = "¡Gracias! Hemos recibido tu mensaje y te responderemos muy pronto ♡";
     formulario.reset();
   } catch {
-    aviso.textContent = "No se ha podido enviar. Escríbenos a lulet.world@gmail.com y te respondemos.";
+    aviso.textContent = "No se ha podido enviar. Escríbenos a luletsworld@gmail.com y te respondemos.";
   } finally {
     aviso.hidden = false;
     boton.disabled = false;

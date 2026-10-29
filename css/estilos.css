@@ -85,7 +85,7 @@ h3 { font-size: 1.5rem; margin: .8rem 0 .2rem; }
 }
 .portada__texto > p:not(.etiqueta) { color: var(--gris); max-width: 480px; margin-bottom: 2rem; }
 .portada__botones { display: flex; gap: .8rem; flex-wrap: wrap; }
-.portada__foto img { border-radius: 200px 200px 12px 12px; aspect-ratio: 4/5; object-fit: cover; width: 100%; }
+.portada__foto img { border-radius: 200px 200px 12px 12px; aspect-ratio: 4/5; object-fit: cover; object-position: center 70%; width: 100%; }
 
 .ventajas {
   display: grid; grid-template-columns: repeat(4, 1fr);

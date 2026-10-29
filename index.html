@@ -57,7 +57,7 @@
     <!-- ===== QUIÉNES SOMOS ===== -->
     <section id="quienes-somos" class="seccion quienes">
       <div class="quienes__foto">
-        <img src="img/bolsa-vino.jpg" alt="Bolsa de lino para botella de vino, cosida y bordada a mano" />
+        <img src="img/bolsa-vino.jpg" alt="Bolsa de tela para botella de vino, cosida y bordada a mano" />
       </div>
       <div class="quienes__texto">
         <p class="etiqueta">Quiénes somos</p>
@@ -108,13 +108,13 @@
         <article class="producto">
           <img src="img/bolsa-vino.jpg" alt="Bolsa de tela para botella de vino con el nombre Julio bordado" />
           <h3>Bolsa para vino</h3>
-          <p>Lino con asas de rayas y nombre bordado.</p>
+          <p>Tela con asas de rayas y nombre bordado.</p>
           <span class="producto__precio">Precio a consultar</span>
         </article>
         <article class="producto">
           <img src="img/tote-rayas.jpg" alt="Tote bag de rayas rosas y azules con una inicial bordada" />
           <h3>Tote bag de rayas</h3>
-          <p>Con tu inicial bordada en dorado.</p>
+          <p>Con tu inicial bordada, en el color que elijas.</p>
           <span class="producto__precio">Precio a consultar</span>
         </article>
       </div>
@@ -126,6 +126,7 @@
       <h2>Cuéntanos tu idea</h2>
       <p class="seccion__intro">Escríbenos y te respondemos con una propuesta y presupuesto.</p>
       <form class="formulario" id="formulario">
+        <input type="text" name="_honey" class="formulario__trampa" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <label>Nombre <input type="text" name="nombre" required /></label>
         <label>Email <input type="email" name="email" required /></label>
         <label>¿Para qué ocasión? <select name="ocasion">
@@ -138,9 +139,10 @@
         <label>Fecha del evento <input type="date" name="fecha" /></label>
         <label class="formulario__ancho">Tu idea <textarea name="mensaje" rows="4" placeholder="Qué te gustaría, cuántas piezas, colores…"></textarea></label>
         <button type="submit" class="boton formulario__ancho">Enviar</button>
-        <p class="formulario__aviso" id="aviso" hidden>Formulario de prueba: todavía no envía mensajes.</p>
+        <p class="formulario__aviso" id="aviso" role="status" hidden></p>
       </form>
       <p class="contacto__redes">
+        O escríbenos directamente a <a href="mailto:lulet.world@gmail.com">lulet.world@gmail.com</a><br />
         También en Instagram: <a href="https://www.instagram.com/delulet_/" target="_blank" rel="noopener">@delulet_</a>
       </p>
     </section>

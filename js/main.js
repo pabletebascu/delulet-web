@@ -14,8 +14,35 @@ menu.querySelectorAll("a").forEach((enlace) =>
   })
 );
 
-// Formulario de prueba: más adelante lo conectaremos a un servicio real
-document.getElementById("formulario").addEventListener("submit", (e) => {
+// Formulario de contacto: los mensajes llegan al correo de Delulet a través de FormSubmit
+const formulario = document.getElementById("formulario");
+const aviso = document.getElementById("aviso");
+
+formulario.addEventListener("submit", async (e) => {
   e.preventDefault();
-  document.getElementById("aviso").hidden = false;
+  const boton = formulario.querySelector("button");
+  boton.disabled = true;
+  boton.textContent = "Enviando…";
+
+  const datos = Object.fromEntries(new FormData(formulario));
+  datos._subject = "Nuevo mensaje desde la web de Delulet";
+  datos._template = "table";
+
+  try {
+    const respuesta = await fetch("https://formsubmit.co/ajax/lulet.world@gmail.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(datos),
+    });
+    const resultado = await respuesta.json();
+    if (!respuesta.ok || String(resultado.success) !== "true") throw new Error(resultado.message);
+    aviso.textContent = "¡Gracias! Hemos recibido tu mensaje y te responderemos muy pronto ♡";
+    formulario.reset();
+  } catch {
+    aviso.textContent = "No se ha podido enviar. Escríbenos a lulet.world@gmail.com y te respondemos.";
+  } finally {
+    aviso.hidden = false;
+    boton.disabled = false;
+    boton.textContent = "Enviar";
+  }
 });

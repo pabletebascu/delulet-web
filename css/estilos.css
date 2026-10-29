@@ -146,6 +146,8 @@ h3 { font-size: 1.5rem; margin: .8rem 0 .2rem; }
   border: 1px solid #d9cfc1; border-radius: 8px; background: var(--crema);
 }
 .formulario__ancho { grid-column: 1 / -1; }
+.formulario__trampa { position: absolute; left: -9999px; }
+.formulario button:disabled { opacity: .6; cursor: wait; }
 .formulario__aviso { grid-column: 1 / -1; text-align: center; color: var(--terracota); }
 .contacto__redes { margin-top: 2rem; color: var(--gris); }
 .contacto__redes a { color: var(--terracota); }

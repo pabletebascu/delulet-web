@@ -11,5 +11,5 @@ Web de Delulet: detalles personalizados hechos a mano con telas y bordados.
 
 ## Pendiente
 
-- Datos de contacto (WhatsApp / email) y conectar el formulario
+- Activar el formulario: la primera vez que se envíe, FormSubmit manda un email de activación a lulet.world@gmail.com
 - Precios de los productos

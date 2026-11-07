@@ -50,7 +50,12 @@ formulario.addEventListener("submit", async (e) => {
 // Carrusel de encargos: repite las tarjetas hasta llenar la pantalla y las duplica
 // para que el deslizamiento sea continuo, sin saltos, haya las que haya
 const carrusel = document.getElementById("carrusel");
-if (carrusel && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+// Con pocos encargos se muestran fijos: el carrusel solo arranca a partir de MINIMO_CARRUSEL
+const MINIMO_CARRUSEL = 4;
+const hayPocos = carrusel && carrusel.querySelectorAll(".encargo").length < MINIMO_CARRUSEL;
+if (hayPocos) carrusel.classList.add("carrusel--fijo");
+
+if (carrusel && !hayPocos && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
   const pista = carrusel.querySelector(".carrusel__pista");
   const originales = [...pista.children];
   const VELOCIDAD = 40; // píxeles por segundo

@@ -143,6 +143,9 @@ h3 { font-size: 1.5rem; margin: .8rem 0 .2rem; }
 .carrusel__pista { display: flex; width: max-content; text-align: left; }
 .carrusel__pista.en-marcha { animation: deslizar var(--duracion, 40s) linear infinite; }
 .carrusel:hover .carrusel__pista, .carrusel:focus-within .carrusel__pista { animation-play-state: paused; }
+.carrusel--fijo { overflow: visible; margin-inline: 0; -webkit-mask-image: none; mask-image: none; }
+.carrusel--fijo .carrusel__pista { width: auto; flex-wrap: wrap; justify-content: center; gap: 2rem; }
+.carrusel--fijo .encargo { margin-right: 0; }
 @keyframes deslizar { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
   .carrusel { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }

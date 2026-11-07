@@ -14,7 +14,8 @@ menu.querySelectorAll("a").forEach((enlace) =>
   })
 );
 
-// Formulario de contacto: los mensajes llegan al correo de Delulet a través de FormSubmit
+// Formulario de contacto: los mensajes llegan al correo de Delulet a través de Web3Forms
+const CLAVE_WEB3FORMS = "2b7e2a49-5285-49b2-8589-3ae5f6d05f7a";
 const formulario = document.getElementById("formulario");
 const aviso = document.getElementById("aviso");
 
@@ -25,17 +26,19 @@ formulario.addEventListener("submit", async (e) => {
   boton.textContent = "Enviando…";
 
   const datos = Object.fromEntries(new FormData(formulario));
-  datos._subject = "Nuevo mensaje desde la web de Delulet";
-  datos._template = "table";
+  datos.access_key = CLAVE_WEB3FORMS;
+  datos.subject = "Nuevo mensaje desde la web de Delulet";
+  datos.from_name = "Web de Delulet";
+  datos.botcheck = formulario.botcheck.checked;
 
   try {
-    const respuesta = await fetch("https://formsubmit.co/ajax/luletsworld@gmail.com", {
+    const respuesta = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(datos),
     });
     const resultado = await respuesta.json();
-    if (!respuesta.ok || String(resultado.success) !== "true") throw new Error(resultado.message);
+    if (!respuesta.ok || resultado.success !== true) throw new Error(resultado.message);
     aviso.textContent = "¡Gracias! Hemos recibido tu mensaje y te responderemos muy pronto ♡";
     formulario.reset();
   } catch {

@@ -1,3 +1,4 @@
+// Versión 4 (si ves esta línea en delulet.com/js/main.js, el archivo está actualizado)
 // Menú del móvil: abrir y cerrar
 const botonMenu = document.querySelector(".menu-boton");
 const menu = document.querySelector(".menu");
@@ -21,7 +22,8 @@ const aviso = document.getElementById("aviso");
 
 formulario.addEventListener("submit", async (e) => {
   e.preventDefault();
-  if (formulario.botcheck.checked) return; // casilla trampa: solo la marcan los robots
+  // Casilla trampa: solo la marcan los robots
+  if (formulario.querySelector('[name="botcheck"]')?.checked) return;
 
   const boton = formulario.querySelector("button");
   boton.disabled = true;
@@ -29,6 +31,7 @@ formulario.addEventListener("submit", async (e) => {
 
   const datos = Object.fromEntries(new FormData(formulario));
   delete datos.botcheck;
+  delete datos._honey;
   datos.access_key = CLAVE_WEB3FORMS;
   datos.subject = "Nuevo mensaje desde la web de Delulet";
   datos.from_name = "Web de Delulet";

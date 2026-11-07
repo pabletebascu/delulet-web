@@ -21,34 +21,65 @@ const aviso = document.getElementById("aviso");
 
 formulario.addEventListener("submit", async (e) => {
   e.preventDefault();
+  if (formulario.botcheck.checked) return; // casilla trampa: solo la marcan los robots
+
   const boton = formulario.querySelector("button");
   boton.disabled = true;
   boton.textContent = "Enviando…";
 
   const datos = Object.fromEntries(new FormData(formulario));
+  delete datos.botcheck;
   datos.access_key = CLAVE_WEB3FORMS;
   datos.subject = "Nuevo mensaje desde la web de Delulet";
   datos.from_name = "Web de Delulet";
-  datos.botcheck = formulario.botcheck.checked;
+
+  // Si el servicio no contesta en 15 segundos, se da por fallido
+  const cancelar = new AbortController();
+  const limite = setTimeout(() => cancelar.abort(), 15000);
 
   try {
     const respuesta = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(datos),
+      signal: cancelar.signal,
     });
     const resultado = await respuesta.json();
-    if (!respuesta.ok || resultado.success !== true) throw new Error(resultado.message);
+    if (!respuesta.ok || resultado.success !== true) throw new Error(resultado.message || `HTTP ${respuesta.status}`);
     aviso.textContent = "¡Gracias! Hemos recibido tu mensaje y te responderemos muy pronto ♡";
     formulario.reset();
-  } catch {
-    aviso.textContent = "No se ha podido enviar. Escríbenos a luletsworld@gmail.com y te respondemos.";
+  } catch (error) {
+    const detalle = error.name === "AbortError" ? "sin respuesta" : error.message;
+    console.error("Formulario de contacto:", detalle);
+    aviso.innerHTML = "";
+    aviso.append(
+      "No se ha podido enviar desde la web. ",
+      enlaceCorreo(datos),
+      Object.assign(document.createElement("small"), { className: "formulario__detalle", textContent: `(${detalle})` })
+    );
   } finally {
+    clearTimeout(limite);
     aviso.hidden = false;
     boton.disabled = false;
     boton.textContent = "Enviar";
   }
 });
+
+// Plan B si falla el envío: un enlace que abre el correo con el mensaje ya escrito
+function enlaceCorreo(datos) {
+  const cuerpo = [
+    `Nombre: ${datos.nombre}`,
+    `Email: ${datos.email}`,
+    `Ocasión: ${datos.ocasion}`,
+    `Fecha del evento: ${datos.fecha || "-"}`,
+    "",
+    datos.mensaje,
+  ].join("\n");
+  const enlace = document.createElement("a");
+  enlace.href = `mailto:luletsworld@gmail.com?subject=${encodeURIComponent("Mensaje desde la web de Delulet")}&body=${encodeURIComponent(cuerpo)}`;
+  enlace.textContent = "Pulsa aquí para enviarlo por correo con tu mensaje ya escrito.";
+  return enlace;
+}
 
 // Carrusel de encargos: repite las tarjetas hasta llenar la pantalla y las duplica
 // para que el deslizamiento sea continuo, sin saltos, haya las que haya

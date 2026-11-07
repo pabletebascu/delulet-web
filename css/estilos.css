@@ -177,6 +177,8 @@ h3 { font-size: 1.5rem; margin: .8rem 0 .2rem; }
 .formulario__trampa { position: absolute; left: -9999px; }
 .formulario button:disabled { opacity: .6; cursor: wait; }
 .formulario__aviso { grid-column: 1 / -1; text-align: center; color: var(--terracota); }
+.formulario__aviso a { color: inherit; font-weight: 500; }
+.formulario__detalle { display: block; margin-top: .3rem; font-size: .75rem; color: var(--gris); }
 .contacto__redes { margin-top: 2rem; color: var(--gris); }
 .contacto__redes a { color: var(--terracota); }
 

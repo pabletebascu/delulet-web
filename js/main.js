@@ -46,3 +46,40 @@ formulario.addEventListener("submit", async (e) => {
     boton.textContent = "Enviar";
   }
 });
+
+// Carrusel de encargos: repite las tarjetas hasta llenar la pantalla y las duplica
+// para que el deslizamiento sea continuo, sin saltos, haya las que haya
+const carrusel = document.getElementById("carrusel");
+if (carrusel && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const pista = carrusel.querySelector(".carrusel__pista");
+  const originales = [...pista.children];
+  const VELOCIDAD = 40; // píxeles por segundo
+
+  const montar = () => {
+    pista.classList.remove("en-marcha");
+    pista.replaceChildren(...originales);
+    const anchoGrupo = () => pista.scrollWidth;
+    // Repetir el grupo hasta que ocupe al menos el ancho de la pantalla
+    while (anchoGrupo() < carrusel.clientWidth) {
+      originales.forEach((t) => pista.append(copia(t)));
+    }
+    const ancho = anchoGrupo();
+    // Duplicar todo para que al llegar a la mitad vuelva a empezar sin que se note
+    [...pista.children].forEach((t) => pista.append(copia(t)));
+    pista.style.setProperty("--duracion", `${ancho / VELOCIDAD}s`);
+    pista.classList.add("en-marcha");
+  };
+
+  const copia = (tarjeta) => {
+    const c = tarjeta.cloneNode(true);
+    c.setAttribute("aria-hidden", "true");
+    return c;
+  };
+
+  let espera;
+  addEventListener("resize", () => {
+    clearTimeout(espera);
+    espera = setTimeout(montar, 250);
+  });
+  montar();
+}

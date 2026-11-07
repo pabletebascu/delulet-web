@@ -133,6 +133,22 @@ h3 { font-size: 1.5rem; margin: .8rem 0 .2rem; }
 }
 .bodas__foto { order: 2; }
 
+.encargos { text-align: center; }
+.encargos .seccion__intro { margin-inline: auto; }
+.encargos__galeria {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 340px));
+  justify-content: center; gap: 2rem; text-align: left;
+}
+.encargo { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 6px 24px rgba(43, 38, 34, .06); }
+.encargo img { aspect-ratio: 4/5; object-fit: cover; width: 100%; }
+.encargo__texto { padding: 1.2rem 1.4rem 1.5rem; }
+.encargo__texto h3 { margin-top: .3rem; font-size: 1.4rem; }
+.encargo__texto p { color: var(--gris); font-size: .9rem; }
+.encargo__tipo { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--salvia); font-weight: 500; }
+.encargo blockquote { font: italic 500 1.15rem/1.4 var(--letra-titulos); color: var(--terracota); margin: .2rem 0 .6rem; }
+.encargos__nota { margin-top: 2.5rem; color: var(--gris); font-size: .92rem; }
+.encargos__nota a { color: var(--terracota); }
+
 .contacto { background: var(--lino); text-align: center; }
 .contacto .seccion__intro { margin-inline: auto; }
 .formulario {
